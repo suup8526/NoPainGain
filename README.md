@@ -1,14 +1,5 @@
-# NoPainGain
-Software engineering project team 
+# csci5828-Semester Project (Homework 5,6,7,8)
+## Project Team Name: NoPainGain
+## Team Members: Suhas Upadya, Vasu Sharma, Joon Kim, Lincoln Schafer
 
-Members:
 
-Suhas Upadya
-
-Vasu Sharma
-
-Joon Kim
-
-Lincoln Schafer
-
-Tracking url: https://www.pivotaltracker.com/n/projects/2491429
