@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8"/>
+    <title>No Pain Gain Prototype</title>
+    <style>
+
+        html, body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            background-color: black;
+            height: 20%;
+            display: block;
+            text-align: center;
+            padding-top: 50px;
+            margin: 0;
+        }
+
+        .sub-header {
+            margin: 0;
+            padding: 0;
+            height: 20%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .main {
+            height: 60%;
+        }
+
+        form {
+            margin-top: 2cm;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <img src="https://www.colorado.edu/profiles/express/themes/ucb/images/cu-boulder-logo-text-white.svg"
+         alt="University of Colorado Boulder" width="500">
+</div>
+<div class="sub-header">
+    <h2 class="bottom-three">Team No Pain Gain</h2>
+    <p>Android app coming soon!</p>
+</div>
+<div class="main">
+    <form>
+        <label for="fullName">Full name:</label>&nbsp;&nbsp;
+        <input type="text" id="fullName" name="fullName"><br><br>
+        <input type="button" value="Submit" onclick="onSubmit()"><br><br>
+        <label id="result">Please enter your name.</label>
+    </form>
+</div>
+</body>
+<script type="text/javascript" src="form.js"></script>
+</html>
