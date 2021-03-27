@@ -1,0 +1,102 @@
+package com.nopaingain.bouldereatout.network
+
+import android.content.Context
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.nopaingain.bouldereatout.BoulderEatOutApplication
+import com.nopaingain.bouldereatout.BuildConfig
+import com.nopaingain.bouldereatout.BuildConfig.DEBUG
+import com.nopaingain.bouldereatout.utils.Constants
+import com.readystatesoftware.chuck.ChuckInterceptor
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+
+object NetworkModule {
+
+    fun getRetrofit(context: Context): Retrofit {
+        return Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create(makeGson()))
+            .client(getOkHttpClient(context))
+            .baseUrl(Constants.BASE_URL)
+            .build()
+    }
+
+    fun makeService(): BoulderEatOutEndPoint {
+
+        val okHttpClient = makeOkHttpClient(makeLoggingInterceptor(), BoulderEatOutApplication.getApplicationContext())
+        return makeService(okHttpClient, makeGson(), Constants.BASE_URL)
+    }
+
+
+    private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, context: Context): OkHttpClient {
+
+        val okHttpClient = OkHttpClient.Builder()
+        if (DEBUG) {
+            okHttpClient.addInterceptor(ChuckInterceptor(context))
+            okHttpClient.addInterceptor(AuthInterceptor(context))
+                .addInterceptor(httpLoggingInterceptor)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+        }else{
+            okHttpClient.addInterceptor(AuthInterceptor(context))
+                .addInterceptor(httpLoggingInterceptor)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+        }
+
+        return okHttpClient.build()
+
+    }
+    private fun makeService(okHttpClient: OkHttpClient, gson: Gson, baseUrl: String): BoulderEatOutEndPoint {
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+        return retrofit.create(BoulderEatOutEndPoint::class.java)
+    }
+
+
+    private fun getOkHttpClient(context: Context): OkHttpClient {
+        return if (BuildConfig.BUILD_TYPE == "debug") {
+            OkHttpClient.Builder()
+                .addInterceptor(AuthInterceptor(context))
+                .addInterceptor(ErrorHandlerInterceptor(context))
+                .addInterceptor(ChuckInterceptor(context))
+                .connectTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .build()
+        } else {
+            OkHttpClient.Builder()
+                .addInterceptor(AuthInterceptor(context))
+                .addInterceptor(ErrorHandlerInterceptor(context))
+                .addInterceptor(ChuckInterceptor(context))
+                .connectTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .build()
+        }
+    }
+
+    private fun makeGson(): Gson {
+        return GsonBuilder()
+            .setLenient()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .create()
+    }
+
+    private fun makeLoggingInterceptor(): HttpLoggingInterceptor {
+        val logging = HttpLoggingInterceptor()
+        logging.level = if (DEBUG) HttpLoggingInterceptor.Level.BODY
+        else HttpLoggingInterceptor.Level.NONE
+        return logging
+    }
+
+}
