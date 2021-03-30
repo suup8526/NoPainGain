@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/auth_navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/auth_navigation"
+    app:startDestination="@id/splashFragment">
 
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.nopaingain.bouldereatout.ui.auth.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_dummyFragment"
+            app:destination="@id/dummyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.nopaingain.bouldereatout.ui.auth.RegistrationFragment"
+        android:label="RegistrationFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.nopaingain.bouldereatout.ui.auth.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_dummyFragment"
+            app:destination="@id/dummyFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dummyFragment"
+        android:name="com.nopaingain.bouldereatout.ui.base.DummyFragment"
+        android:label="DummyFragment" />
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.nopaingain.bouldereatout.ui.auth.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" />
 </navigation>

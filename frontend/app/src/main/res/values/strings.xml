@@ -11,4 +11,14 @@
     <string name="str_json_syntax_mismatch_error">Json syntax mismatch</string>
     <string name="str_bad_input">Bad Input</string>
     <string name="str_unknown_error">Unknown error</string>
+    <string name="ic_eat_splash">Icons made by from www.flaticon.com</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="email">email</string>
+    <string name="register">Register</string>
+    <string name="reset">Reset</string>
 </resources>
