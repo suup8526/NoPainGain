@@ -11,9 +11,6 @@ class SessionManager(context: Context) {
 
     var prefs: SharedPreferences = customPrefs(context, Constants.APP_NAME)
 
-    fun defaultPrefs(context: Context): SharedPreferences =
-        PreferenceManager.getDefaultSharedPreferences(context)
-
     fun customPrefs(context: Context, name: String): SharedPreferences =
         context.getSharedPreferences(name, Context.MODE_PRIVATE)
 

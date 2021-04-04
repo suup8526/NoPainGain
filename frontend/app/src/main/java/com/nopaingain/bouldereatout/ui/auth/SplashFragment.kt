@@ -30,4 +30,8 @@ class SplashFragment : BaseFragment() {
     override fun onClick(view: View) { }
 
     override fun isOnBackPressed(): Boolean = true
+
+    override fun showActionBar(): Boolean = false
+
+    override fun showActionBarBackBtn(): Boolean = false
 }

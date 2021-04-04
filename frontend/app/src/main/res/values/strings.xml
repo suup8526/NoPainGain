@@ -21,4 +21,17 @@
     <string name="email">email</string>
     <string name="register">Register</string>
     <string name="reset">Reset</string>
+    <string name="coming_soon">Coming Soon…</string>
+
+    <string name="name_empty_msg">Name should not be empty</string>
+    <string name="user_name_empty_msg">Username should not be empty</string>
+    <string name="email_empty_msg">Email should not be empty</string>
+    <string name="email_invalid_msg">Enter a valid Email ID</string>
+    <string name="password_empty_msg">Password should not be empty</string>
+    <string name="confirm_new_password_empty_msg">Confirm password should not be empty</string>
+    <string name="password_does_not_match">Password doesn\'t match</string>
+    <string name="already_have_an_account">Already have an account?\u0020</string>
+    <string name="no_account">Don\'t have an account?\u0020</string>
+    <string name="login_error_msg">Unable to login\nPlease try again</string>
+    <string name="register_error_msg">Unable to Register\nPlease try again</string>
 </resources>

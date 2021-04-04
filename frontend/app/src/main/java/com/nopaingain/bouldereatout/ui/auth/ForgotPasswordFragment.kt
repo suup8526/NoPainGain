@@ -25,4 +25,8 @@ class ForgotPasswordFragment : BaseFragment() {
     }
 
     override fun isOnBackPressed(): Boolean = true
+
+    override fun showActionBar(): Boolean = true
+
+    override fun showActionBarBackBtn(): Boolean = true
 }

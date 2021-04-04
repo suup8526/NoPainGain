@@ -17,7 +17,11 @@
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.nopaingain.bouldereatout.ui.auth.RegistrationFragment"
-        android:label="RegistrationFragment" />
+        android:label="RegistrationFragment" >
+        <action
+            android:id="@+id/action_registrationFragment_to_dummyFragment"
+            app:destination="@id/dummyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.nopaingain.bouldereatout.ui.auth.LoginFragment"

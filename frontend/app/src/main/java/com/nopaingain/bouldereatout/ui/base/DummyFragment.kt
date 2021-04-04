@@ -21,4 +21,8 @@ class DummyFragment : BaseFragment() {
 
     override fun isOnBackPressed(): Boolean = false
 
+    override fun showActionBar(): Boolean = false
+
+    override fun showActionBarBackBtn(): Boolean = false
+
 }
