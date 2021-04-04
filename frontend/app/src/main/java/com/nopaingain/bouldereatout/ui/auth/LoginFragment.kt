@@ -59,7 +59,7 @@ class LoginFragment: BaseFragment() {
         }
     }
 
-    private fun validateFields() : Boolean {
+    fun validateFields() : Boolean {
         return when {
             tilUsername.editText?.text?.toString()?.isNotEmpty() == false -> {
                 tilUsername.error = getString(R.string.user_name_empty_msg)
