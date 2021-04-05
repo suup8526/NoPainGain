@@ -54,11 +54,11 @@ class RegistrationFragment : BaseFragment() {
 
     private fun validateFields() : Boolean {
         return when {
-            tilName.editText?.text?.toString()?.isNotEmpty() == false -> {
+            tilName.editText?.text?.toString()?.isEmpty() == true -> {
                 tilName.error = getString(R.string.name_empty_msg)
                 false
             }
-            tilEmail.editText?.text?.toString()?.isNotEmpty() == false -> {
+            tilEmail.editText?.text?.toString()?.isEmpty() == true -> {
                 tilEmail.error = getString(R.string.email_empty_msg)
                 false
             }
@@ -66,15 +66,15 @@ class RegistrationFragment : BaseFragment() {
                 tilEmail.error = getString(R.string.email_invalid_msg)
                 false
             }
-            tilUsername.editText?.text?.toString()?.isNotEmpty() == false -> {
+            tilUsername.editText?.text?.toString()?.isEmpty() == true -> {
                 tilUsername.error = getString(R.string.user_name_empty_msg)
                 false
             }
-            tilPassword.editText?.text?.toString()?.isNotEmpty() == false -> {
+            tilPassword.editText?.text?.toString()?.isEmpty() == true -> {
                 tilPassword.error = getString(R.string.password_empty_msg)
                 false
             }
-            tilConfirmPassword.editText?.text?.toString()?.isNotEmpty() == false -> {
+            tilConfirmPassword.editText?.text?.toString()?.isEmpty() == true -> {
                 tilConfirmPassword.error = getString(R.string.confirm_new_password_empty_msg)
                 false
             }

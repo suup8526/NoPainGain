@@ -59,13 +59,13 @@ class LoginFragment: BaseFragment() {
         }
     }
 
-    fun validateFields() : Boolean {
+    private fun validateFields() : Boolean {
         return when {
-            tilUsername.editText?.text?.toString()?.isNotEmpty() == false -> {
+            tilUsername.editText?.text?.toString()?.isEmpty() == true -> {
                 tilUsername.error = getString(R.string.user_name_empty_msg)
                 false
             }
-            tilPassword.editText?.text?.toString()?.isNotEmpty() == false -> {
+            tilPassword.editText?.text?.toString()?.isEmpty() == true -> {
                 tilPassword.error = getString(R.string.password_empty_msg)
                 false
             }
