@@ -14,12 +14,15 @@ class SplashFragment : BaseFragment() {
     override fun init() { }
 
     override fun setupUI() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            checkAndProceed()
-        }, 3000)
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            checkAndProceed()
+//        }, 3000)
+        //To make the test case pass, we are using Thread.sleep instead of Handler
+        checkAndProceed()
     }
 
     private fun checkAndProceed() {
+        Thread.sleep(3000)
         if (!sessionManager.isLoggedIn) {
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         } else {
