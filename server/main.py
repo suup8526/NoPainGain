@@ -28,10 +28,11 @@ async def login(request):
     print("Try to login with: ", username, password)
     # fetch user from database
     userinfo = select_user(username)
-    if password.strip() == userinfo[2].strip():
-        user = User(id=userinfo[0], name=username)
-        auth.login_user(request, user)
-        return response.redirect('/auth_test')
+    if userinfo is not None:
+        if password.strip() == userinfo[2].strip():
+            user = User(id=userinfo[0], name=username)
+            auth.login_user(request, user)
+            return response.redirect('/auth_test')
     
     return response.text("Invalid username or password!")
 
@@ -49,6 +50,8 @@ async def signup(request):
     print("Try to signup with: ", username, password, email)
     id = insert_user(username, password, email)
     print("ID: ", id)
+    if id is None:
+        return response.text("Duplicate username or email!")
     resp = {
         "ID": id
     }
