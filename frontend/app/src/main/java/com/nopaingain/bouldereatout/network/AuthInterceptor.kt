@@ -13,7 +13,7 @@ class AuthInterceptor(val context: Context) : Interceptor {
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = SessionManager(context).getToken()
+        val token = SessionManager(context).getId()
         val request = chain.request()
 
         if (request.header(AUTHORIZATION_REQUIRED) != null) {

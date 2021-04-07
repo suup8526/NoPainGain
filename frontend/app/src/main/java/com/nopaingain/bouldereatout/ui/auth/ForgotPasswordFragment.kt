@@ -24,9 +24,15 @@ class ForgotPasswordFragment : BaseFragment() {
         when (view) {
             btnReset -> {
                 if (validateFields()) {
+                    resetPassword()
                 }
             }
         }
+    }
+
+//    TODO("Not yet implemented")
+    private fun resetPassword() {
+
     }
 
 

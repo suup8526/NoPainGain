@@ -1,19 +1,19 @@
 package com.nopaingain.bouldereatout.network
 
-import com.nopaingain.bouldereatout.network.model.auth.LoginRequest
-import com.nopaingain.bouldereatout.network.model.auth.LoginResponse
-import com.nopaingain.bouldereatout.network.model.auth.RegisterRequest
-import com.nopaingain.bouldereatout.network.model.auth.RegisterResponse
+import com.nopaingain.bouldereatout.network.model.auth.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface BoulderEatOutEndPoint {
 
-    @POST("/v1/auth/login")
+    @POST("/login")
     fun doLogin(@Body loginRequest: LoginRequest): Call<LoginResponse>
 
-    @POST("/v1/auth/register")
+    @POST("/signup")
     fun doRegister(@Body registerRequest: RegisterRequest): Call<RegisterResponse>
+
+    @POST("/logout")
+    fun doLogout(@Body logoutRequest: LogoutRequest): Call<LogoutResponse>
 
 }

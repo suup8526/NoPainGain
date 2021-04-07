@@ -34,4 +34,6 @@
     <string name="no_account">Don\'t have an account?\u0020</string>
     <string name="login_error_msg">Unable to login\nPlease try again</string>
     <string name="register_error_msg">Unable to Register\nPlease try again</string>
+    <string name="register_success">Registration successful, proceed to login</string>
+    <string name="login_success">Login successful</string>
 </resources>

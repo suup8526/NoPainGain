@@ -6,10 +6,10 @@ class Constants {
         const val APP_NAME = "BOULDER_EAT_OUT"
 
         //AUTH
-        const val USER_TOKEN = "USER_TOKEN"
+        const val USER_ID = "USER_ID"
         const val IS_LOGGED_IN = "IS_LOGGED_IN"
 
         //URL
-        const val BASE_URL = "http://localhost"
+        const val BASE_URL = "http://user-handling.herokuapp.com/"
     }
 }

@@ -96,13 +96,11 @@ class RegistrationFragment : BaseFragment() {
         )
 
         authViewModel.doRegister(registerRequest).observe(this, Observer {
-            authViewModel.obProcessing.value = true
+            authViewModel.obProcessing.value = false
             it ?: return@Observer
-            if (it.responseData?.data != null) {
-                sessionManager.setToken(it.responseData?.data?.token ?: "")
-                prefs[Constants.IS_LOGGED_IN] = true
-                findNavController().navigate(R.id.action_registrationFragment_to_dummyFragment)
-                activity?.finish()
+            if (it.responseData?.id != null) {
+                context?.showAlertDialog(R.string.register_success)
+                findNavController().navigateUp()
             } else {
                 context?.showAlertDialog(
                     it.errorResponse?.message ?: getString(R.string.register_error_msg)

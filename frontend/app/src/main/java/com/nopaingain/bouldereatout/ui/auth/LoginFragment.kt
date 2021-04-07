@@ -11,6 +11,7 @@ import com.nopaingain.bouldereatout.ui.base.BaseFragment
 import com.nopaingain.bouldereatout.utils.Constants
 import com.nopaingain.bouldereatout.utils.set
 import com.nopaingain.bouldereatout.utils.showAlertDialog
+import com.nopaingain.bouldereatout.utils.showToast
 import com.nopaingain.bouldereatout.viewmodels.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -81,11 +82,12 @@ class LoginFragment: BaseFragment() {
         )
 
         authViewModel.doLogin(loginRequest).observe(this, Observer {
-            authViewModel.obProcessing.value = true
+            authViewModel.obProcessing.value = false
             it ?: return@Observer
-            if (it.responseData?.data != null) {
-                sessionManager.setToken(it.responseData?.data?.token ?: "")
+            if (it.responseData?.id != null) {
+                sessionManager.setId(it.responseData?.id ?: "")
                 prefs[Constants.IS_LOGGED_IN] = true
+                context?.showToast(R.string.login_success)
                 findNavController().navigate(R.id.action_loginFragment_to_dummyFragment)
                 activity?.finish()
             } else {

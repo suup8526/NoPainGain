@@ -2,7 +2,6 @@ package com.nopaingain.bouldereatout.services
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
 import com.nopaingain.bouldereatout.utils.Constants
 import com.nopaingain.bouldereatout.utils.get
 import com.nopaingain.bouldereatout.utils.set
@@ -31,14 +30,14 @@ class SessionManager(context: Context) {
     /**
      * Used to save Bearer token in prefs
      */
-    fun setToken(token: String) {
-        prefs[Constants.USER_TOKEN] = token
+    fun setId(token: String) {
+        prefs[Constants.USER_ID] = token
     }
 
     /**
      * @return Bearer token
      */
-    fun getToken(): String? = prefs[Constants.USER_TOKEN]
+    fun getId(): String? = prefs[Constants.USER_ID]
 
     /**
      * Used to clear prefs on logout
