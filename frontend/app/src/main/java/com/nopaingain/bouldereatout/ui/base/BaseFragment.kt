@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.nopaingain.bouldereatout.R
 import com.nopaingain.bouldereatout.services.SessionManager
 import com.nopaingain.bouldereatout.utils.hide
 import com.nopaingain.bouldereatout.utils.show
@@ -24,9 +26,20 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun isOnBackPressed(): Boolean
 
+    abstract fun showActionBar(): Boolean
+
+    abstract fun showActionBarBackBtn(): Boolean
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sessionManager = SessionManager(requireContext())
+        if (showActionBar()) {
+            (activity as AppCompatActivity).supportActionBar?.show()
+        } else {
+            (activity as AppCompatActivity).supportActionBar?.hide()
+        }
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(showActionBarBackBtn())
         init()
     }
 
