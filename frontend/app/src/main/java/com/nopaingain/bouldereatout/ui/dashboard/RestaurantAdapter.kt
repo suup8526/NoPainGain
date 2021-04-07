@@ -60,6 +60,10 @@ class RestaurantAdapter(
         }
     }
 
+    fun getRestaurantList(): ArrayList<SimpleRestaurantModel> {
+        return restaurantList
+    }
+
     fun addLoadingFooter() {
         isLoadingAdded = true
     }
