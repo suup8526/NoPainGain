@@ -12,6 +12,8 @@
     <string name="str_bad_input">Bad Input</string>
     <string name="str_unknown_error">Unknown error</string>
     <string name="ic_eat_splash">Icons made by from www.flaticon.com</string>
+    <string name="ic_restaurant_desc">Icons made by from https://www.flaticon.com/authors/eucalyp</string>
+    <string name="ic_rating_desc">Icons made by from https://www.flaticon.com/authors/pixel-perfect</string>
     <string name="username">username</string>
     <string name="password">password</string>
     <string name="login">login</string>
@@ -36,4 +38,5 @@
     <string name="register_error_msg">Unable to Register\nPlease try again</string>
     <string name="register_success">Registration successful, proceed to login</string>
     <string name="login_success">Login successful</string>
+    <string name="search_hint">start typing restaurant name…</string>
 </resources>

@@ -10,7 +10,12 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.*
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.nopaingain.bouldereatout.R
 
 fun View.show() {
@@ -188,4 +193,18 @@ fun Context.showListAlertDialog(
     } catch (e: Exception) {
         e.printStackTrace()
     }
+}
+
+fun ImageView.loadImage(placeHolder: Int, imgUrl: String?) {
+    val options = RequestOptions()
+        .centerCrop()
+        .placeholder(this.drawable)
+        .error(placeHolder)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .priority(Priority.HIGH)
+
+    Glide.with(this.context)
+        .load(imgUrl)
+        .apply(options)
+        .into(this)
 }

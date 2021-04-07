@@ -11,6 +11,7 @@
     <color name="colorPrimary">#7038FF</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FFE0E0E0</color>
+    <color name="appBGColor">#FF03DAC5</color>
 
     <color name="edit_text_underline">#FFE0E0E0</color>
 </resources>
