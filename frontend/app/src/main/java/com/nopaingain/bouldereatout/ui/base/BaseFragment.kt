@@ -20,6 +20,7 @@ abstract class BaseFragment : Fragment() {
 
     protected abstract fun init()
 
+
     protected abstract fun setupUI()
 
     protected abstract fun onClick(view: View)

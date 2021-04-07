@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivItemDp"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0"
         tool:text="The Sink" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvItemCuisine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="0"
         tool:text="American" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvItemLoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         app:layout_constraintVertical_bias="0"
         tool:text="Hill" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivItemRating"
         android:layout_width="15dp"
         android:layout_height="15dp"
@@ -82,7 +82,7 @@
         app:layout_constraintStart_toStartOf="@id/tvItemLoc"
         app:layout_constraintTop_toBottomOf="@id/tvItemLoc"/>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvItemRatingValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

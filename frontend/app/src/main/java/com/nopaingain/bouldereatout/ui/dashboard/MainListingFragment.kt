@@ -2,17 +2,24 @@ package com.nopaingain.bouldereatout.ui.dashboard
 
 import android.content.SharedPreferences
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nopaingain.bouldereatout.R
 import com.nopaingain.bouldereatout.network.model.restaurant.SimpleRestaurantModel
 import com.nopaingain.bouldereatout.ui.base.BaseFragment
 import com.nopaingain.bouldereatout.ui.base.PaginationScrollListener
+import com.nopaingain.bouldereatout.viewmodels.RestaurantViewModel
 import kotlinx.android.synthetic.main.fragment_main_listing.*
 
 class MainListingFragment : BaseFragment(), RestaurantAdapter.OnRestaurantClickListener {
 
+    private lateinit var restaurantViewModel: RestaurantViewModel
     private lateinit var prefs: SharedPreferences
     private var restaurantAdapter: RestaurantAdapter? = null
     private var restaurantList: ArrayList<SimpleRestaurantModel> = ArrayList()
@@ -24,12 +31,31 @@ class MainListingFragment : BaseFragment(), RestaurantAdapter.OnRestaurantClickL
     override fun getLayoutID(): Int = R.layout.fragment_main_listing
 
     override fun init() {
+        restaurantViewModel = ViewModelProvider(requireActivity()).get(RestaurantViewModel::class.java)
+        prefs = sessionManager.customPrefs()
+        initObservers()
+    }
 
+    private fun initObservers() {
+        restaurantViewModel.obProcessing.observe(this, Observer {
+            if (it == true){
+                displayProgress()
+            } else {
+                hideProgress()
+            }
+        })
     }
 
     override fun setupUI() {
         initSV()
+        restaurantList = restaurantViewModel.getRestaurantListing("", 10)
         initRV()
+//        restaurantAdapter?.notifyDataSetChanged()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     private fun initSV() {
@@ -67,8 +93,8 @@ class MainListingFragment : BaseFragment(), RestaurantAdapter.OnRestaurantClickL
             override fun loadMoreItems() {
                 isLoading = true
                 restaurantAdapter?.addLoadingFooter()
-                if (showNext())
-                    getRestaurant(rvRestaurant.layoutManager?.itemCount.toString())
+//                if (showNext())
+//                    getRestaurant(rvRestaurant.layoutManager?.itemCount.toString())
             }
         })
     }
@@ -81,7 +107,8 @@ class MainListingFragment : BaseFragment(), RestaurantAdapter.OnRestaurantClickL
     }
 
     override fun onRestaurantClick(position: Int) {
-        //Goto detail page
+        val bundle = bundleOf("id" to restaurantList[position].id)
+        findNavController().navigate(R.id.action_mainListingFragment_to_restaurantDetailFragment, bundle)
     }
 
     override fun onClick(view: View) {}

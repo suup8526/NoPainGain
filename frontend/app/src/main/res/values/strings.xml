@@ -39,4 +39,6 @@
     <string name="register_success">Registration successful, proceed to login</string>
     <string name="login_success">Login successful</string>
     <string name="search_hint">start typing restaurant name…</string>
+    <string name="logout">Logout</string>
+    <string name="logging_out">Logging out</string>
 </resources>

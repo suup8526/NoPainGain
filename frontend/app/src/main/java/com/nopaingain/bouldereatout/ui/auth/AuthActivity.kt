@@ -31,4 +31,9 @@ class AuthActivity : BaseActivity() {
             super.onBackPressed()
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }

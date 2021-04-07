@@ -3,8 +3,8 @@ package com.nopaingain.bouldereatout.ui.dashboard
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nopaingain.bouldereatout.R
 import com.nopaingain.bouldereatout.network.model.restaurant.SimpleRestaurantModel
@@ -71,11 +71,11 @@ class RestaurantAdapter(
     }
 
     inner class RestaurantViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-        private var restaurantIV: ImageView? = null
-        private var nameTV: TextView? = null
-        private var cuisineTV: TextView? = null
-        private var locationTV: TextView? = null
-        private var ratingTV: TextView? = null
+        private var restaurantIV: AppCompatImageView? = null
+        private var nameTV: AppCompatTextView? = null
+        private var cuisineTV: AppCompatTextView? = null
+        private var locationTV: AppCompatTextView? = null
+        private var ratingTV: AppCompatTextView? = null
 
         init {
             restaurantIV = itemView?.findViewById(R.id.ivItemDp)

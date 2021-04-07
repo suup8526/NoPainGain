@@ -10,7 +10,6 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.*
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -195,7 +194,7 @@ fun Context.showListAlertDialog(
     }
 }
 
-fun ImageView.loadImage(placeHolder: Int, imgUrl: String?) {
+fun androidx.appcompat.widget.AppCompatImageView.loadImage(placeHolder: Int, imgUrl: String?) {
     val options = RequestOptions()
         .centerCrop()
         .placeholder(this.drawable)

@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/dashboard_navigation"/>
+        app:navGraph="@navigation/dashboard_graph"/>
 
     <include layout="@layout/view_progress" />
 

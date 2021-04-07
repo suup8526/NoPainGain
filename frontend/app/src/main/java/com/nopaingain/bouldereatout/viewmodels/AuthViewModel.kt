@@ -5,7 +5,7 @@ import com.nopaingain.bouldereatout.BoulderEatOutApplication.Companion.getBoulde
 import com.nopaingain.bouldereatout.network.model.auth.*
 import com.nopaingain.bouldereatout.network.model.common.DataWrapper
 
-class AuthViewModel: BaseViewModel() {
+class AuthViewModel : BaseViewModel() {
 
     fun doLogin(loginRequest: LoginRequest): MutableLiveData<DataWrapper<LoginResponse>> {
         return getBoulderEatOutRepository().doLogin(loginRequest)

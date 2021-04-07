@@ -15,7 +15,7 @@ import com.nopaingain.bouldereatout.utils.showToast
 import com.nopaingain.bouldereatout.viewmodels.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 
-class LoginFragment: BaseFragment() {
+class LoginFragment : BaseFragment() {
 
     private lateinit var authViewModel: AuthViewModel
     private lateinit var prefs: SharedPreferences
@@ -30,7 +30,7 @@ class LoginFragment: BaseFragment() {
 
     private fun initObservers() {
         authViewModel.obProcessing.observe(this, Observer {
-            if (it == true){
+            if (it == true) {
                 displayProgress()
             } else {
                 hideProgress()
@@ -45,7 +45,7 @@ class LoginFragment: BaseFragment() {
     }
 
     override fun onClick(view: View) {
-        when(view){
+        when (view) {
             btnLogin -> {
                 if (validateFields()) {
                     doLogin()
@@ -60,7 +60,7 @@ class LoginFragment: BaseFragment() {
         }
     }
 
-    private fun validateFields() : Boolean {
+    private fun validateFields(): Boolean {
         return when {
             tilUsername.editText?.text?.toString()?.isEmpty() == true -> {
                 tilUsername.error = getString(R.string.user_name_empty_msg)
@@ -81,21 +81,29 @@ class LoginFragment: BaseFragment() {
             password = etPassword?.text?.toString()
         )
 
-        authViewModel.doLogin(loginRequest).observe(this, Observer {
-            authViewModel.obProcessing.value = false
-            it ?: return@Observer
-            if (it.responseData?.id != null) {
-                sessionManager.setId(it.responseData?.id ?: "")
-                prefs[Constants.IS_LOGGED_IN] = true
-                context?.showToast(R.string.login_success)
-                findNavController().navigate(R.id.action_loginFragment_to_dummyFragment)
-                activity?.finish()
-            } else {
-                context?.showAlertDialog(
-                    it.errorResponse?.message ?: getString(R.string.login_error_msg)
-                )
-            }
-        })
+//        authViewModel.doLogin(loginRequest).observe(this, Observer {
+//            authViewModel.obProcessing.value = false
+//            it ?: return@Observer
+//            if (it.responseData?.id != null) {
+//                sessionManager.setId(it.responseData?.id ?: "")
+//                prefs[Constants.IS_LOGGED_IN] = true
+//                context?.showToast(R.string.login_success)
+//                findNavController().navigate(R.id.action_loginFragment_to_dashboardActivity)
+//                activity?.finish()
+//            } else {
+//                context?.showAlertDialog(
+//                    it.errorResponse?.message ?: getString(R.string.login_error_msg)
+//                )
+//            }
+//        })
+        dummy()
+    }
+
+    private fun dummy() {
+        prefs[Constants.IS_LOGGED_IN] = true
+        context?.showToast(R.string.login_success)
+        findNavController().navigate(R.id.action_loginFragment_to_dashboardActivity)
+        activity?.finish()
     }
 
     override fun isOnBackPressed(): Boolean = true

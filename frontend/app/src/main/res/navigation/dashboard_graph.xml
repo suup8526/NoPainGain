@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/dashboard_navigation"
+    app:startDestination="@id/mainListingFragment">
+
+    <fragment
+        android:id="@+id/mainListingFragment"
+        android:name="com.nopaingain.bouldereatout.ui.dashboard.MainListingFragment"
+        android:label="MainListingFragment" >
+        <action
+            android:id="@+id/action_mainListingFragment_to_restaurantDetailFragment"
+            app:destination="@id/restaurantDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetailFragment"
+        android:name="com.nopaingain.bouldereatout.ui.dashboard.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="1" />
+    </fragment>
+    <activity
+        android:id="@+id/authActivity"
+        android:name="com.nopaingain.bouldereatout.ui.auth.AuthActivity"
+        android:label="AuthActivity" />
+</navigation>
