@@ -67,6 +67,7 @@ async def reset(request):
     return response.text("Password updated!")
 
 @app.route('/update', methods=['POST'])
+@auth.login_required
 async def update(request):
     old_username = request.form.get('old_username')
     username = request.form.get('username')
