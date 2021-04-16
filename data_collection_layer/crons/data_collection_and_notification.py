@@ -2,6 +2,8 @@ import logging, requests
 from config import YELP_API, get_api_offset, set_api_offset
 from urllib.parse import quote
 from models.restaurants import Restaurants
+from models import db
+from utils.rabbitmq import send_message
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +33,14 @@ async def yelp_request(host, path, api_key, url_params=None):
     return response.json()
 
 
+def get_restaurant_categories(categories):
+    final_list = []
+    if categories:
+        for category in categories:
+            final_list.append(category['title'])
+    return final_list
+
+
 async def fetch_data_and_notify() -> None:
     """
     creates meetings for recordable calvents
@@ -46,10 +56,19 @@ async def fetch_data_and_notify() -> None:
     restaurants = restaurants[YELP_API.SEARCH_API_OBJECTS]
 
     # for now extracting only the name and alias of the restaurants
-    db_restaurant_objects = [{'name': restaurant['name'], 'alias': restaurant['alias']} for restaurant in restaurants]
+    db_restaurant_objects = [{'name': restaurant.get('name'), 'alias': restaurant.get('alias'), 'external_id': restaurant.get('id'),
+                              'image_url': restaurant.get('image_url'), 'review_count': restaurant.get('review_count'),
+                              'rating': restaurant.get('rating'), 'address': restaurant.get('location').get('display_address')[0],
+                              'phone': restaurant.get('phone'), 'categories':
+                                  get_restaurant_categories(restaurant.get('categories')), 'price': restaurant.get('price')}
+                             for restaurant in restaurants]
+    print(db_restaurant_objects)
 
-    print(restaurants)
     set_api_offset()
     import random
-    await Restaurants.insert().values(db_restaurant_objects).gino.scalar()
+    async with db.transaction():
+        await Restaurants.insert().values(db_restaurant_objects).gino.scalar()
+        await send_message("")
+
+
 

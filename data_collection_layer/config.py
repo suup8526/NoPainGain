@@ -1,4 +1,6 @@
 offset = 0
+import os
+
 
 class YELP_API:
     API_HOST = 'https://api.yelp.com'
@@ -10,12 +12,20 @@ class YELP_API:
     LIMIT = 2
     SEARCH_API_OBJECTS = 'businesses'
 
+
 class DBConstants:
-    # DB_address = 'postgresql://postgres:ds5673@35.193.117.225:5432/product_database'
-    DB_address = 'postgresql://localhost/vasusharma'
+    DB_address = str(os.getenv('DATABASE_URL', 'postgresql://localhost/vasusharma'))
+    # DB_address = 'postgresql://localhost/vasusharma'
+
+
+class RabbitmqBroker:
+    address = os.getenv('CLOUDAMQP_URL', "amqp://guest:guest@localhost/")
+    restaurant_data_notify_queue = 'restaurant_data_notify'
+
 
 class CRON_INTERVAL:
-    fetch_data_and_notify = 10
+    fetch_data_and_notify = 40
+
 
 def set_api_offset():
     global offset

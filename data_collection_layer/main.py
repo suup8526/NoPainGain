@@ -24,12 +24,19 @@ if __name__ == '__main__':
     async def after_server_start(sanic_app, loop) -> None:
         import crons
         # init event-client
+        from utils.rabbitmq import connect_broker
+        await connect_broker(loop)
         # init crons
         await asyncio.gather(*crons.init_crons())
+
+    @cron_app.listener('before_server_stop')
+    async def before_server_stop(sanic_app, loop) -> None:
+        from utils.rabbitmq import close_conn_broker
+        await close_conn_broker()
 
 
     @cron_app.route('/health', methods=['GET'])
     async def get_restaurant_data(request):
         return response.json('healthy route')
 
-    cron_app.run(host='127.0.0.1', port=8080, access_log=False)
+    cron_app.run(host='0.0.0.0', port=8080, access_log=False)
