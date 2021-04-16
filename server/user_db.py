@@ -7,17 +7,17 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 conn.autocommit = True
 
 
-def insert_user(username, password, email):
+def insert_user(username, name, password, email):
     print("Try to insert into DB")
     id = None
     try:
         cur = conn.cursor()
 
-        sql = """INSERT INTO USERS (USERNAME, PASSWORD, EMAIL)
-                VALUES (%s, %s, %s)
+        sql = """INSERT INTO USERS (USERNAME, NAME, PASSWORD, EMAIL)
+                VALUES (%s, %s, %s, %s)
                 RETURNING ID;"""
 
-        cur.execute(sql, (username, password, email))
+        cur.execute(sql, (username, name, password, email))
 
         id = cur.fetchone()[0]
         print(id)
@@ -37,7 +37,7 @@ def select_user(username):
     try:
         cur = conn.cursor()
 
-        sql = """SELECT ID, USERNAME, PASSWORD, EMAIL
+        sql = """SELECT ID, USERNAME, NAME, PASSWORD, EMAIL
                  FROM USERS
                  WHERE USERNAME=%s;"""
 
@@ -54,3 +54,42 @@ def select_user(username):
             cur.close()
     
     return row
+
+def update_user(old_username, username, name, password, email):
+    print("Try to update DB")
+    row = None
+    try:
+        cur = conn.cursor()
+
+        sql = """UPDATE USERS SET
+                 USERNAME=COALESCE(%s, USERNAME),
+                 NAME=COALESCE(%s, NAME),
+                 PASSWORD=COALESCE(%s, PASSWORD),
+                 EMAIL=COALESCE(%s, EMAIL)
+                 WHERE USERNAME=%s;"""
+
+        cur.execute(sql, (old_username, username, name, password, email))
+    except Exception as error:
+        #conn.rollback()
+        print(error)
+    finally:
+        if cur.closed is False:
+            cur.close()
+
+def update_password(username, password):
+    print("Try to update DB")
+    row = None
+    try:
+        cur = conn.cursor()
+
+        sql = """UPDATE USERS SET
+                 PASSWORD=%s
+                 WHERE USERNAME=%s;"""
+
+        cur.execute(sql, (username, password))
+    except Exception as error:
+        #conn.rollback()
+        print(error)
+    finally:
+        if cur.closed is False:
+            cur.close()

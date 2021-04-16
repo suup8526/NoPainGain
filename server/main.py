@@ -29,7 +29,7 @@ async def login(request):
     # fetch user from database
     userinfo = select_user(username)
     if userinfo is not None:
-        if password.strip() == userinfo[2].strip():
+        if password.strip() == userinfo[3].strip():
             user = User(id=userinfo[0], name=username)
             auth.login_user(request, user)
             return response.redirect('/auth_test')
@@ -47,8 +47,9 @@ async def signup(request):
     username = request.form.get('username')
     password = request.form.get('password')
     email = request.form.get('email')
-    print("Try to signup with: ", username, password, email)
-    id = insert_user(username, password, email)
+    name = request.form.get('name')
+    print("Try to signup with: ", username, name, password, email)
+    id = insert_user(username, name, password, email)
     print("ID: ", id)
     if id is None:
         return response.text("Duplicate username or email!")
@@ -56,6 +57,25 @@ async def signup(request):
         "ID": id
     }
     return response.json(resp)
+
+@app.route('/reset', methods=['POST'])
+async def reset(request):
+    username = request.form.get('username')
+    password = request.form.get('password')
+    print("Try to update password with: ", username, password)
+    id = update_password(username, password)
+    return response.text("Password updated!")
+
+@app.route('/update', methods=['POST'])
+async def update(request):
+    old_username = request.form.get('old_username')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    email = request.form.get('email')
+    name = request.form.get('name')
+    print("Try to update user with: ", old_username, username, name, password, email)
+    id = update_user(old_username, username, name, password, email)
+    return response.text("User updated!")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=os.environ.get('PORT') or 80)
