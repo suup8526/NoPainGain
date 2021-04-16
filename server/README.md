@@ -5,7 +5,7 @@
 * Initial table _users_ can be created by _postgre_init.sql_
 
 ## User Handling
-* 3 APIs provided
+* 5 APIs provided
 * Currently uses POST form submit
 * _signup_: Register new user. Requires username, name, password, email (username and email should be unique. password should be hashed to 128 CHAR size)
 * _login_: Login with username and password. Requires username, password.
