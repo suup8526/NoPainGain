@@ -1,7 +1,7 @@
 from sanic import Sanic, response
 from sanic_auth import Auth, User
 from user_db import insert_user, select_user
-import os
+import os, ssl
 
 
 # user authentication
@@ -79,4 +79,6 @@ async def update(request):
     return response.json({'message':'User updated!'})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=os.environ.get('PORT') or 80)
+    context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
+    context.load_cert_chain("selfsigned.crt", keyfile="private.key")
+    app.go_fast(host="0.0.0.0", port=os.environ.get('PORT') or 8080, ssl=context, workers=os.cpu_count())
