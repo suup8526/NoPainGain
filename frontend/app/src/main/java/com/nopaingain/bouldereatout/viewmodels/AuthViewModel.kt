@@ -14,8 +14,4 @@ class AuthViewModel : BaseViewModel() {
     fun doRegister(registerRequest: RegisterRequest): MutableLiveData<DataWrapper<RegisterResponse>> {
         return getBoulderEatOutRepository().doRegister(registerRequest)
     }
-
-    fun doLogout(logoutRequest: LogoutRequest): MutableLiveData<DataWrapper<LogoutResponse>> {
-        return getBoulderEatOutRepository().doLogout(logoutRequest)
-    }
 }

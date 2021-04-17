@@ -1,6 +1,8 @@
 package com.nopaingain.bouldereatout.ui.auth
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +15,12 @@ import com.nopaingain.bouldereatout.utils.isValidEmail
 import com.nopaingain.bouldereatout.utils.set
 import com.nopaingain.bouldereatout.utils.showAlertDialog
 import com.nopaingain.bouldereatout.viewmodels.AuthViewModel
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registration.*
+import kotlinx.android.synthetic.main.fragment_registration.etPassword
+import kotlinx.android.synthetic.main.fragment_registration.etUsername
+import kotlinx.android.synthetic.main.fragment_registration.tilPassword
+import kotlinx.android.synthetic.main.fragment_registration.tilUsername
 
 class RegistrationFragment : BaseFragment() {
 
@@ -42,10 +49,15 @@ class RegistrationFragment : BaseFragment() {
         btnSubmit.setOnClickListener(onClickListener)
     }
 
+    @SuppressLint("InvalidAnalyticsName")
     override fun onClick(view: View) {
         when (view) {
             btnSubmit -> {
                 if (validateFields()) {
+                    val bundle = Bundle()
+                    bundle.putString("username", etUsername?.text?.toString())
+                    bundle.putString("name", etName?.text?.toString())
+                    firebaseAnalytics.logEvent(Constants.EVENT_SIGN_UP, bundle)
                     doRegister()
                 }
             }

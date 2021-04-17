@@ -1,6 +1,8 @@
 package com.nopaingain.bouldereatout.ui.auth
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -44,17 +46,24 @@ class LoginFragment : BaseFragment() {
         tvRegister.setOnClickListener(onClickListener)
     }
 
+    @SuppressLint("InvalidAnalyticsName")
     override fun onClick(view: View) {
         when (view) {
             btnLogin -> {
                 if (validateFields()) {
-                    doLogin()
+                    val bundle = Bundle()
+                    bundle.putString("username", etUsername?.text?.toString())
+                    firebaseAnalytics.logEvent(Constants.EVENT_LOGIN, bundle)
+//                    doLogin()
+                    dummy()
                 }
             }
             tvForgotPassword -> {
+                firebaseAnalytics.logEvent(Constants.EVENT_FORGOT_PWD, null)
                 findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
             }
             tvRegister -> {
+                firebaseAnalytics.logEvent(Constants.EVENT_REGISTER, null)
                 findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
             }
         }
@@ -81,22 +90,21 @@ class LoginFragment : BaseFragment() {
             password = etPassword?.text?.toString()
         )
 
-//        authViewModel.doLogin(loginRequest).observe(this, Observer {
-//            authViewModel.obProcessing.value = false
-//            it ?: return@Observer
-//            if (it.responseData?.id != null) {
-//                sessionManager.setId(it.responseData?.id ?: "")
-//                prefs[Constants.IS_LOGGED_IN] = true
-//                context?.showToast(R.string.login_success)
-//                findNavController().navigate(R.id.action_loginFragment_to_dashboardActivity)
-//                activity?.finish()
-//            } else {
-//                context?.showAlertDialog(
-//                    it.errorResponse?.message ?: getString(R.string.login_error_msg)
-//                )
-//            }
-//        })
-        dummy()
+        authViewModel.doLogin(loginRequest).observe(this, Observer {
+            authViewModel.obProcessing.value = false
+            it ?: return@Observer
+            if (it.responseData?.id != null) {
+                sessionManager.setId(it.responseData?.id ?: "")
+                prefs[Constants.IS_LOGGED_IN] = true
+                context?.showToast(R.string.login_success)
+                findNavController().navigate(R.id.action_loginFragment_to_dashboardActivity)
+                activity?.finish()
+            } else {
+                context?.showAlertDialog(
+                    it.errorResponse?.message ?: getString(R.string.login_error_msg)
+                )
+            }
+        })
     }
 
     private fun dummy() {

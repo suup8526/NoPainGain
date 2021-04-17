@@ -96,10 +96,11 @@ class RestaurantAdapter(
             else
                 restaurantIV?.setImageResource(R.drawable.ic_restaurant)
 
-            nameTV?.text = restaurant.name
-            cuisineTV?.text = restaurant.cusine
-            locationTV?.text = restaurant.location
-            ratingTV?.text = restaurant.rating
+            nameTV?.text = restaurant.name ?: ""
+            if (restaurant.categories != null && restaurant.categories.isNotEmpty())
+                cuisineTV?.text = restaurant.categories.joinToString(separator = ", ")
+            locationTV?.text = restaurant.address ?: "Boulder"
+            ratingTV?.text = (restaurant.rating ?: 0).toString()
         }
     }
 }

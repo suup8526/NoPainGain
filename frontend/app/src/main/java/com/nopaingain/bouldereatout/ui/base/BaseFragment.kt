@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.nopaingain.bouldereatout.R
 import com.nopaingain.bouldereatout.services.SessionManager
 import com.nopaingain.bouldereatout.utils.hide
@@ -16,10 +17,11 @@ abstract class BaseFragment : Fragment() {
 
     protected lateinit var sessionManager: SessionManager
 
+    protected lateinit var firebaseAnalytics: FirebaseAnalytics
+
     abstract fun getLayoutID() : Int
 
     protected abstract fun init()
-
 
     protected abstract fun setupUI()
 
@@ -34,6 +36,7 @@ abstract class BaseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sessionManager = SessionManager(requireContext())
+        firebaseAnalytics = FirebaseAnalytics.getInstance(requireContext())
         if (showActionBar()) {
             (activity as AppCompatActivity).supportActionBar?.show()
         } else {

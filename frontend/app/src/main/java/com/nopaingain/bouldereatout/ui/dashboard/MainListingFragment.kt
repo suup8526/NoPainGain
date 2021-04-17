@@ -1,5 +1,6 @@
 package com.nopaingain.bouldereatout.ui.dashboard
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import com.nopaingain.bouldereatout.R
 import com.nopaingain.bouldereatout.network.model.restaurant.SimpleRestaurantModel
 import com.nopaingain.bouldereatout.ui.base.BaseFragment
 import com.nopaingain.bouldereatout.ui.base.PaginationScrollListener
+import com.nopaingain.bouldereatout.utils.Constants
 import com.nopaingain.bouldereatout.viewmodels.RestaurantViewModel
 import kotlinx.android.synthetic.main.fragment_main_listing.*
 
@@ -47,30 +49,13 @@ class MainListingFragment : BaseFragment(), RestaurantAdapter.OnRestaurantClickL
     }
 
     override fun setupUI() {
-        initSV()
-        restaurantList = restaurantViewModel.getRestaurantListing("", 10)
+        getRestaurant(0)
         initRV()
-//        restaurantAdapter?.notifyDataSetChanged()
     }
 
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
-    }
-
-    private fun initSV() {
-        svRestaurant?.queryHint = getString(R.string.search_hint)
-        svRestaurant?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                //Call api
-                return false
-            }
-
-        })
     }
 
     private fun initRV() {
@@ -93,22 +78,33 @@ class MainListingFragment : BaseFragment(), RestaurantAdapter.OnRestaurantClickL
             override fun loadMoreItems() {
                 isLoading = true
                 restaurantAdapter?.addLoadingFooter()
-//                if (showNext())
-//                    getRestaurant(rvRestaurant.layoutManager?.itemCount.toString())
+                if (showNext())
+                    getRestaurant(rvRestaurant.layoutManager?.itemCount?: 0)
             }
         })
     }
 
-    private fun getRestaurant(offset: String) {
-        isFirst = false
-        isLoading = false
-        restaurantAdapter?.removeLoadingFooter()
-        restaurantAdapter?.notifyDataSetChanged()
+    private fun getRestaurant(offset: Int) {
+        restaurantViewModel.getRestaurantListing(offset, 10).observe(this, Observer {
+            it ?: return@Observer
+            restaurantList.addAll(it)
+
+            showNext = it.size == 10
+            isFirst = false
+            isLoading = false
+            restaurantAdapter?.removeLoadingFooter()
+            restaurantAdapter?.notifyDataSetChanged()
+
+        })
+
     }
 
+    @SuppressLint("InvalidAnalyticsName")
     override fun onRestaurantClick(position: Int) {
-        val bundle = bundleOf("id" to restaurantList[position].id)
-        findNavController().navigate(R.id.action_mainListingFragment_to_restaurantDetailFragment, bundle)
+        val bundle = bundleOf("id" to restaurantList[position].id, "name" to restaurantList[position].name)
+        firebaseAnalytics.logEvent(Constants.EVENT_RESTAURANT_CLICK, bundle)
+        val param = bundleOf("model" to restaurantList[position])
+        findNavController().navigate(R.id.action_mainListingFragment_to_restaurantDetailFragment, param)
     }
 
     override fun onClick(view: View) {}

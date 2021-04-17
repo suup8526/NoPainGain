@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.nopaingain.bouldereatout.R
+import com.nopaingain.bouldereatout.network.model.restaurant.Sim
 import com.nopaingain.bouldereatout.network.model.restaurant.SimpleRestaurantModel
 import com.nopaingain.bouldereatout.ui.base.BaseFragment
 import com.nopaingain.bouldereatout.utils.loadImage
@@ -39,9 +40,9 @@ class RestaurantDetailFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val id = arguments?.getString("id")
-        id ?: return
-        loadRestaurantDetails(restaurantViewModel.getRestaurantDetail(id))
+        val simpleRestaurantModel = arguments?.get("model") as SimpleRestaurantModel?
+        simpleRestaurantModel ?: return
+        loadRestaurantDetails(simpleRestaurantModel)
     }
 
     override fun setupUI() {
@@ -56,12 +57,13 @@ class RestaurantDetailFragment : BaseFragment() {
         else
             ivRestaurant?.setImageResource(R.drawable.ic_restaurant)
         (activity as AppCompatActivity).supportActionBar?.title = restaurant.name
-        tvRestaurantName?.text = restaurant.name
-        tvRestaurantCuisine?.text = restaurant.cusine
-        tvRestaurantLoc?.text = restaurant.location
-        tvRestaurantRatingValue?.text = restaurant.rating
+        tvRestaurantName?.text = restaurant.name ?: ""
+        if (restaurant.categories != null && restaurant.categories.isNotEmpty())
+            tvRestaurantCuisine?.text = restaurant.categories.joinToString(separator = ", ")
+        tvRestaurantLoc?.text = restaurant.address ?: "Boulder"
+        tvRestaurantRatingValue?.text = (restaurant.rating ?: 0).toString()
         tvRestaurantDetail?.text =
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            "More Details coming soon!"
     }
 
     override fun onClick(view: View) {

@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "151633604328",
+    "project_id": "boulder-eatout",
+    "storage_bucket": "boulder-eatout.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151633604328:android:3a46c559bf8118d56ca35d",
+        "android_client_info": {
+          "package_name": "com.nopaingain.bouldereatout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151633604328-jft501orfa962csl5sln73r2728pbofa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD_xWcz37KZAhBS5AyjPPeYZAOM_CIxIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151633604328-jft501orfa962csl5sln73r2728pbofa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151633604328:android:afe3079f0508ee8c6ca35d",
+        "android_client_info": {
+          "package_name": "com.nopaingain.bouldereatout.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151633604328-jft501orfa962csl5sln73r2728pbofa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD_xWcz37KZAhBS5AyjPPeYZAOM_CIxIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151633604328-jft501orfa962csl5sln73r2728pbofa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

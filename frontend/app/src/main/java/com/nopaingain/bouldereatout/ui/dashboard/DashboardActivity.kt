@@ -1,15 +1,19 @@
 package com.nopaingain.bouldereatout.ui.dashboard
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.nopaingain.bouldereatout.R
 import com.nopaingain.bouldereatout.services.SessionManager
 import com.nopaingain.bouldereatout.ui.base.BaseActivity
 import com.nopaingain.bouldereatout.ui.base.BaseFragment
+import com.nopaingain.bouldereatout.utils.Constants
 import com.nopaingain.bouldereatout.utils.showToast
 
 class DashboardActivity : BaseActivity() {
@@ -42,7 +46,10 @@ class DashboardActivity : BaseActivity() {
         }
     }
 
+    @SuppressLint("InvalidAnalyticsName")
     fun onLogoutAction(menuItem: MenuItem) {
+        val bundle = bundleOf("username" to "TODO")
+        FirebaseAnalytics.getInstance(this).logEvent(Constants.EVENT_LOGOUT, bundle)
         showToast(getString(R.string.logging_out))
         prefs.edit().clear().apply()
         navController.navigate(R.id.authActivity)

@@ -10,7 +10,7 @@
         android:id="@+id/clRestaurant"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_marginTop="10dp">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
@@ -29,9 +29,9 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivRestaurant"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="300dp"
             android:contentDescription="@string/ic_restaurant_desc"
-            android:scaleType="centerInside"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_restaurant"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline1"
