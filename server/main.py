@@ -19,7 +19,7 @@ async def add_session_to_request(request):
 @app.route('/auth_test')
 @auth.login_required
 async def auth_test(request):
-    return response.text("You are secured!")
+    return response.json({'message':'You are secured!'})
 
 @app.route('/login', methods=['POST'])
 async def login(request):
@@ -32,9 +32,9 @@ async def login(request):
         if password.strip() == userinfo[3].strip():
             user = User(id=userinfo[0], name=username)
             auth.login_user(request, user)
-            return response.redirect('/auth_test')
+            return response.json({'message':'login successful'})
     
-    return response.text("Invalid username or password!")
+    return response.json({'message':'Invalid username or password!'})
 
 @app.route('/logout')
 @auth.login_required
@@ -52,7 +52,7 @@ async def signup(request):
     id = insert_user(username, name, password, email)
     print("ID: ", id)
     if id is None:
-        return response.text("Duplicate username or email!")
+        return response.json({'message':'Duplicate username or email!'})
     resp = {
         "ID": id
     }
@@ -64,7 +64,7 @@ async def reset(request):
     password = request.form.get('password')
     print("Try to update password with: ", username, password)
     id = update_password(username, password)
-    return response.text("Password updated!")
+    return response.json({'message':'Password updated!'})
 
 @app.route('/update', methods=['POST'])
 @auth.login_required
@@ -76,7 +76,7 @@ async def update(request):
     name = request.form.get('name')
     print("Try to update user with: ", old_username, username, name, password, email)
     id = update_user(old_username, username, name, password, email)
-    return response.text("User updated!")
+    return response.json({'message':'User updated!'})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=os.environ.get('PORT') or 80)
