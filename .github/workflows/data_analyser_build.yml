@@ -30,13 +30,12 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-      working-directory: data_analyser/
+      working-directory: data_analyser_layer/
       run: |
-        ls -la
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Test with unittest
-      working-directory: data_analyser/
+      working-directory: data_analyser_layer/
       run: |
         python3 -m unittest discover
 
