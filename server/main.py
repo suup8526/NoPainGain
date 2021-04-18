@@ -23,8 +23,10 @@ async def auth_test(request):
 
 @app.route('/login', methods=['POST'])
 async def login(request):
-    username = request.form.get('username')
-    password = request.form.get('password')
+    #username = request.form.get('username')
+    #password = request.form.get('password')
+    username = request.json.get('username')
+    password = request.json.get('password')
     print("Try to login with: ", username, password)
     # fetch user from database
     userinfo = select_user(username)
@@ -49,10 +51,14 @@ async def logout(request):
 
 @app.route('/signup', methods=['POST'])
 async def signup(request):
-    username = request.form.get('username')
-    password = request.form.get('password')
-    email = request.form.get('email')
-    name = request.form.get('name')
+    #username = request.form.get('username')
+    #password = request.form.get('password')
+    #email = request.form.get('email')
+    #name = request.form.get('name')
+    username = request.json.get('username')
+    password = request.json.get('password')
+    email = request.json.get('email')
+    name = request.json.get('name')
     print("Try to signup with: ", username, name, password, email)
     id = insert_user(username, name, password, email)
     print("ID: ", id)
@@ -65,8 +71,10 @@ async def signup(request):
 
 @app.route('/reset', methods=['POST'])
 async def reset(request):
-    username = request.form.get('username')
-    password = request.form.get('password')
+    #username = request.form.get('username')
+    #password = request.form.get('password')
+    username = request.json.get('username')
+    password = request.json.get('password')
     print("Try to update password with: ", username, password)
     id = update_password(username, password)
     return response.json({'message':'Password updated!'})
@@ -74,11 +82,16 @@ async def reset(request):
 @app.route('/update', methods=['POST'])
 @auth.login_required
 async def update(request):
-    old_username = request.form.get('old_username')
-    username = request.form.get('username')
-    password = request.form.get('password')
-    email = request.form.get('email')
-    name = request.form.get('name')
+    #old_username = request.form.get('old_username')
+    #username = request.form.get('username')
+    #password = request.form.get('password')
+    #email = request.form.get('email')
+    #name = request.form.get('name')
+    old_username = request.json.get('old_username')
+    username = request.json.get('username')
+    password = request.json.get('password')
+    email = request.json.get('email')
+    name = request.json.get('name')
     print("Try to update user with: ", old_username, username, name, password, email)
     id = update_user(old_username, username, name, password, email)
     return response.json({'message':'User updated!'})
