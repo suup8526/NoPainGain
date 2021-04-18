@@ -10,7 +10,7 @@ class TestDataAnalyser(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.app = Sanic(cls.__name__)
-        asyncio.run(init_routes(cls.app))
+        init_routes(cls.app)
 
     @mock.patch('routes.restaurant_route.get_restaurants_from_db', return_value=[])
     def test_empty_restaurant_list(self, mock_empty_resp):
