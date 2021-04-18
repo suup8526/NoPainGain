@@ -34,6 +34,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r data_analyser_layer/requirements.txt
     - name: Test with unittest
+      working-directory: ./data_analyser
       run: |
         python3 -m unittest discover
 
