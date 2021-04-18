@@ -1,6 +1,8 @@
 package com.nopaingain.bouldereatout.ui.auth
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +17,7 @@ import com.nopaingain.bouldereatout.utils.showToast
 import com.nopaingain.bouldereatout.viewmodels.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 
-class LoginFragment: BaseFragment() {
+class LoginFragment : BaseFragment() {
 
     private lateinit var authViewModel: AuthViewModel
     private lateinit var prefs: SharedPreferences
@@ -30,7 +32,7 @@ class LoginFragment: BaseFragment() {
 
     private fun initObservers() {
         authViewModel.obProcessing.observe(this, Observer {
-            if (it == true){
+            if (it == true) {
                 displayProgress()
             } else {
                 hideProgress()
@@ -44,23 +46,30 @@ class LoginFragment: BaseFragment() {
         tvRegister.setOnClickListener(onClickListener)
     }
 
+    @SuppressLint("InvalidAnalyticsName")
     override fun onClick(view: View) {
-        when(view){
+        when (view) {
             btnLogin -> {
                 if (validateFields()) {
+                    val bundle = Bundle()
+                    bundle.putString("username", etUsername?.text?.toString())
+                    firebaseAnalytics.logEvent(Constants.EVENT_LOGIN, bundle)
                     doLogin()
+//                    dummy()
                 }
             }
             tvForgotPassword -> {
+                firebaseAnalytics.logEvent(Constants.EVENT_FORGOT_PWD, null)
                 findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
             }
             tvRegister -> {
+                firebaseAnalytics.logEvent(Constants.EVENT_REGISTER, null)
                 findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
             }
         }
     }
 
-    private fun validateFields() : Boolean {
+    private fun validateFields(): Boolean {
         return when {
             tilUsername.editText?.text?.toString()?.isEmpty() == true -> {
                 tilUsername.error = getString(R.string.user_name_empty_msg)
@@ -88,7 +97,7 @@ class LoginFragment: BaseFragment() {
                 sessionManager.setId(it.responseData?.id ?: "")
                 prefs[Constants.IS_LOGGED_IN] = true
                 context?.showToast(R.string.login_success)
-                findNavController().navigate(R.id.action_loginFragment_to_dummyFragment)
+                findNavController().navigate(R.id.action_loginFragment_to_dashboardActivity)
                 activity?.finish()
             } else {
                 context?.showAlertDialog(
@@ -96,6 +105,13 @@ class LoginFragment: BaseFragment() {
                 )
             }
         })
+    }
+
+    private fun dummy() {
+        prefs[Constants.IS_LOGGED_IN] = true
+        context?.showToast(R.string.login_success)
+        findNavController().navigate(R.id.action_loginFragment_to_dashboardActivity)
+        activity?.finish()
     }
 
     override fun isOnBackPressed(): Boolean = true

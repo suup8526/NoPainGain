@@ -11,30 +11,26 @@
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_splashFragment_to_dummyFragment"
-            app:destination="@id/dummyFragment" />
+            android:id="@+id/action_splashFragment_to_dashboardActivity"
+            app:destination="@id/dashboardActivity" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.nopaingain.bouldereatout.ui.auth.RegistrationFragment"
-        android:label="RegistrationFragment" >
-        <action
-            android:id="@+id/action_registrationFragment_to_dummyFragment"
-            app:destination="@id/dummyFragment" />
-    </fragment>
+        android:label="RegistrationFragment" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.nopaingain.bouldereatout.ui.auth.LoginFragment"
         android:label="LoginFragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_dummyFragment"
-            app:destination="@id/dummyFragment" />
         <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_dashboardActivity"
+            app:destination="@id/dashboardActivity" />
     </fragment>
     <fragment
         android:id="@+id/dummyFragment"
@@ -44,4 +40,8 @@
         android:id="@+id/forgotPasswordFragment"
         android:name="com.nopaingain.bouldereatout.ui.auth.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment" />
+    <activity
+        android:id="@+id/dashboardActivity"
+        android:name="com.nopaingain.bouldereatout.ui.dashboard.DashboardActivity"
+        android:label="DashboardActivity" />
 </navigation>

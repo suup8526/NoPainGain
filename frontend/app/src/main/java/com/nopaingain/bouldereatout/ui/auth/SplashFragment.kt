@@ -26,7 +26,7 @@ class SplashFragment : BaseFragment() {
         if (!sessionManager.isLoggedIn) {
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         } else {
-            findNavController().navigate(R.id.action_splashFragment_to_dummyFragment)
+            findNavController().navigate(R.id.action_splashFragment_to_dashboardActivity)
         }
     }
 
