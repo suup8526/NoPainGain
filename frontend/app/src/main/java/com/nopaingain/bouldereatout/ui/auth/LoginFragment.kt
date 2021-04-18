@@ -54,8 +54,8 @@ class LoginFragment : BaseFragment() {
                     val bundle = Bundle()
                     bundle.putString("username", etUsername?.text?.toString())
                     firebaseAnalytics.logEvent(Constants.EVENT_LOGIN, bundle)
-//                    doLogin()
-                    dummy()
+                    doLogin()
+//                    dummy()
                 }
             }
             tvForgotPassword -> {
