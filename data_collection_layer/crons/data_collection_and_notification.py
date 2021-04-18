@@ -43,7 +43,7 @@ def get_restaurant_categories(categories):
 
 async def fetch_data_and_notify() -> None:
     """
-    creates meetings for recordable calvents
+    fetches restaurant data from yelp and pushes it to a message queue
     """
     url_params = {
         'location': YELP_API.DEFAULT_LOCATION,
