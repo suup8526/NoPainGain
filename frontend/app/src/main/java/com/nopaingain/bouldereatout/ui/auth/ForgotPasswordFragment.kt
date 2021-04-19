@@ -4,6 +4,7 @@ import android.view.View
 import com.nopaingain.bouldereatout.R
 import com.nopaingain.bouldereatout.ui.base.BaseFragment
 import com.nopaingain.bouldereatout.utils.isValidEmail
+import com.nopaingain.bouldereatout.utils.showAlertDialog
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
 import kotlinx.android.synthetic.main.fragment_forgot_password.tilEmail
 import kotlinx.android.synthetic.main.fragment_forgot_password.tilUsername
@@ -32,7 +33,7 @@ class ForgotPasswordFragment : BaseFragment() {
 
 //    TODO("Not yet implemented")
     private fun resetPassword() {
-
+        context?.showAlertDialog(getString(R.string.feature_coming_soon))
     }
 
 

@@ -10,6 +10,9 @@
         <action
             android:id="@+id/action_mainListingFragment_to_restaurantDetailFragment"
             app:destination="@id/restaurantDetailFragment" />
+        <action
+            android:id="@+id/action_mainListingFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantDetailFragment"
@@ -20,9 +23,16 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="1" />
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <activity
         android:id="@+id/authActivity"
         android:name="com.nopaingain.bouldereatout.ui.auth.AuthActivity"
         android:label="AuthActivity" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.nopaingain.bouldereatout.ui.dashboard.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>

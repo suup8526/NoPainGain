@@ -59,7 +59,7 @@ class MainListingFragment : BaseFragment(), RestaurantAdapter.OnRestaurantClickL
     }
 
     private fun initRV() {
-        restaurantAdapter = RestaurantAdapter(restaurantList, this)
+        restaurantAdapter = RestaurantAdapter(requireContext(), restaurantList, this)
         rvRestaurant.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = restaurantAdapter
