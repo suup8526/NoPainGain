@@ -9,7 +9,7 @@
         android:id="@+id/iv_splash"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/ic_eat_splash"
+        android:contentDescription="@string/ic_gen_desc"
         android:src="@drawable/ic_eat_splash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

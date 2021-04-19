@@ -65,6 +65,57 @@
             tool:text="American" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRestaurantRatingValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/tvRestaurantCuisine"
+            tool:text="4.5" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRestaurantRating"
+            android:layout_width="15dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/ic_rating_desc"
+            android:src="@drawable/ic_star_rating"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/tvRestaurantRatingValue"
+            app:layout_constraintTop_toTopOf="@id/tvRestaurantRatingValue"
+            app:layout_constraintBottom_toBottomOf="@id/tvRestaurantRatingValue"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRestaurantReviewCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/tvRestaurantPrice"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/tvRestaurantRatingValue"
+            tool:text="@string/review_count" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRestaurantPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toEndOf="@id/tvRestaurantReviewCount"
+            app:layout_constraintTop_toBottomOf="@id/tvRestaurantRatingValue"
+            tool:text="@string/price" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvRestaurantLoc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -74,45 +125,73 @@
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/tvRestaurantCuisine"
+            app:layout_constraintTop_toBottomOf="@id/tvRestaurantReviewCount"
             tool:text="Hill" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvRestaurantRatingValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:padding="5dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/ivRestaurantRating"
+        <View
+            android:id="@+id/horizontalSep1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintTop_toBottomOf="@id/tvRestaurantLoc"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toTopOf="@id/ivRestaurantRating"
-            tool:text="4.5" />
+            app:layout_constraintEnd_toEndOf="@id/guideline2"/>
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivRestaurantRating"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="5dp"
-            android:contentDescription="@string/ic_rating_desc"
-            android:src="@drawable/ic_star_rating"
+            android:id="@+id/ivCall"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/ic_gen_desc"
+            app:layout_constraintEnd_toStartOf="@+id/verticalSep1"
+            app:layout_constraintTop_toBottomOf="@id/horizontalSep1"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_telephone"/>
+
+        <View
+            android:id="@+id/verticalSep1"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintTop_toBottomOf="@id/horizontalSep1"
+            app:layout_constraintBottom_toTopOf="@id/horizontalSep2"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMap"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/ic_gen_desc"
+            app:layout_constraintStart_toEndOf="@id/verticalSep1"
+            app:layout_constraintTop_toBottomOf="@id/horizontalSep1"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@id/tvRestaurantRatingValue"
-            app:layout_constraintTop_toBottomOf="@id/tvRestaurantLoc" />
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_map"/>
+
+        <View
+            android:id="@+id/horizontalSep2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintTop_toBottomOf="@id/ivCall"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvRestaurantDetail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/tvRestaurantRatingValue"
+            app:layout_constraintTop_toBottomOf="@id/horizontalSep2"
             tool:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." />
 
 

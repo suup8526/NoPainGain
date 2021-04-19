@@ -14,4 +14,9 @@
     <color name="appBGColor">#FFFFFFFF</color>
 
     <color name="edit_text_underline">#FFE0E0E0</color>
+
+    <color name="rating_1">#F44336</color>
+    <color name="rating_2">#FF9800</color>
+    <color name="rating_3">#4CAF50</color>
+
 </resources>

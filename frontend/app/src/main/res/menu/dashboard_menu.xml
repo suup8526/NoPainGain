@@ -3,11 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/miSettings"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="ifRoom"
+        android:onClick="onProfileAction"
+        android:title="@string/profile">
+    </item>
+
+    <item
         android:id="@+id/miCompose"
         android:icon="@drawable/ic_logout"
         app:showAsAction="ifRoom"
         android:onClick="onLogoutAction"
         android:title="@string/logout">
     </item>
+
+
 
 </menu>

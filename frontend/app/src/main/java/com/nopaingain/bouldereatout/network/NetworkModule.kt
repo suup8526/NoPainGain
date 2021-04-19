@@ -25,49 +25,12 @@ object NetworkModule {
             .build()
     }
 
-    fun makeService(): BoulderEatOutEndPoint {
-
-        val okHttpClient = makeOkHttpClient(makeLoggingInterceptor(), BoulderEatOutApplication.getApplicationContext())
-        return makeService(okHttpClient, makeGson(), Constants.BASE_URL)
-    }
-
-
-    private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, context: Context): OkHttpClient {
-
-        val okHttpClient = OkHttpClient.Builder()
-        if (DEBUG) {
-            okHttpClient.addInterceptor(ChuckInterceptor(context))
-            okHttpClient.addInterceptor(AuthInterceptor(context))
-                .addInterceptor(httpLoggingInterceptor)
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
-        }else{
-            okHttpClient.addInterceptor(AuthInterceptor(context))
-                .addInterceptor(httpLoggingInterceptor)
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
-        }
-
-        return okHttpClient.build()
-
-    }
-    private fun makeService(okHttpClient: OkHttpClient, gson: Gson, baseUrl: String): BoulderEatOutEndPoint {
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-        return retrofit.create(BoulderEatOutEndPoint::class.java)
-    }
-
-
     private fun getOkHttpClient(context: Context): OkHttpClient {
         return if (BuildConfig.BUILD_TYPE == "debug") {
             OkHttpClient.Builder()
                 .addInterceptor(AuthInterceptor(context))
                 .addInterceptor(ErrorHandlerInterceptor(context))
-                .addInterceptor(ChuckInterceptor(context))
+//                .addInterceptor(ChuckInterceptor(context))
                 .connectTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
@@ -76,7 +39,6 @@ object NetworkModule {
             OkHttpClient.Builder()
                 .addInterceptor(AuthInterceptor(context))
                 .addInterceptor(ErrorHandlerInterceptor(context))
-                .addInterceptor(ChuckInterceptor(context))
                 .connectTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
@@ -90,13 +52,6 @@ object NetworkModule {
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .create()
-    }
-
-    private fun makeLoggingInterceptor(): HttpLoggingInterceptor {
-        val logging = HttpLoggingInterceptor()
-        logging.level = if (DEBUG) HttpLoggingInterceptor.Level.BODY
-        else HttpLoggingInterceptor.Level.NONE
-        return logging
     }
 
 }

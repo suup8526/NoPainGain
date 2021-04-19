@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.nopaingain.bouldereatout.R
@@ -54,6 +55,16 @@ class DashboardActivity : BaseActivity() {
         prefs.edit().clear().apply()
         navController.navigate(R.id.authActivity)
         finishAffinity()
+    }
+
+    fun onProfileAction(menuItem: MenuItem) {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.dashboardHostFragment)
+        val currentFragment = navHostFragment!!.childFragmentManager.fragments[0]
+        if (currentFragment is MainListingFragment) {
+            findNavController(R.id.dashboardHostFragment).navigate(R.id.action_mainListingFragment_to_profileFragment)
+        } else if (currentFragment is RestaurantDetailFragment){
+            findNavController(R.id.dashboardHostFragment).navigate(R.id.action_restaurantDetailFragment_to_profileFragment)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

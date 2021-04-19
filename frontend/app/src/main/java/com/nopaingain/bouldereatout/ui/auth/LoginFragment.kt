@@ -55,7 +55,6 @@ class LoginFragment : BaseFragment() {
                     bundle.putString("username", etUsername?.text?.toString())
                     firebaseAnalytics.logEvent(Constants.EVENT_LOGIN, bundle)
                     doLogin()
-//                    dummy()
                 }
             }
             tvForgotPassword -> {
@@ -95,23 +94,19 @@ class LoginFragment : BaseFragment() {
             it ?: return@Observer
             if (it.responseData?.id != null) {
                 sessionManager.setId(it.responseData?.id ?: "")
+                sessionManager.setName(it.responseData?.name ?: "")
+                sessionManager.setEmail(it.responseData?.email ?: "")
                 prefs[Constants.IS_LOGGED_IN] = true
                 context?.showToast(R.string.login_success)
                 findNavController().navigate(R.id.action_loginFragment_to_dashboardActivity)
                 activity?.finish()
             } else {
+                val msg = it.errorResponse?.message?: it.responseData?.message
                 context?.showAlertDialog(
-                    it.errorResponse?.message ?: getString(R.string.login_error_msg)
+                    msg ?: getString(R.string.login_error_msg)
                 )
             }
         })
-    }
-
-    private fun dummy() {
-        prefs[Constants.IS_LOGGED_IN] = true
-        context?.showToast(R.string.login_success)
-        findNavController().navigate(R.id.action_loginFragment_to_dashboardActivity)
-        activity?.finish()
     }
 
     override fun isOnBackPressed(): Boolean = true

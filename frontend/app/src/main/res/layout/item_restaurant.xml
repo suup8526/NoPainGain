@@ -72,27 +72,38 @@
         app:layout_constraintVertical_bias="0"
         tool:text="Hill" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivItemRating"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/ic_star_rating"
-        android:contentDescription="@string/ic_rating_desc"
-        app:layout_constraintStart_toStartOf="@id/tvItemLoc"
-        app:layout_constraintTop_toBottomOf="@id/tvItemLoc"/>
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvItemRatingValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:textColor="@color/black"
         android:textSize="10sp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="@id/ivItemRating"
-        app:layout_constraintStart_toEndOf="@id/ivItemRating"
-        app:layout_constraintTop_toTopOf="@id/ivItemRating"
+        app:layout_constraintStart_toStartOf="@id/tvItemLoc"
+        app:layout_constraintTop_toBottomOf="@id/tvItemLoc"
         tool:text="4.5" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivItemRating"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="5dp"
+        android:contentDescription="@string/ic_rating_desc"
+        android:src="@drawable/ic_star_rating"
+        app:layout_constraintBottom_toBottomOf="@id/tvItemRatingValue"
+        app:layout_constraintStart_toEndOf="@id/tvItemRatingValue"
+        app:layout_constraintTop_toTopOf="@id/tvItemRatingValue" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@id/ivItemRating"
+        app:layout_constraintTop_toTopOf="@id/tvItemRatingValue"
+        tool:text="@string/price" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/labelBarrier"

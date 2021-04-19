@@ -11,9 +11,10 @@
     <string name="str_json_syntax_mismatch_error">Json syntax mismatch</string>
     <string name="str_bad_input">Bad Input</string>
     <string name="str_unknown_error">Unknown error</string>
-    <string name="ic_eat_splash">Icons made by from www.flaticon.com</string>
+    <string name="ic_gen_desc">Icons made by from www.flaticon.com</string>
     <string name="ic_restaurant_desc">Icons made by from https://www.flaticon.com/authors/eucalyp</string>
     <string name="ic_rating_desc">Icons made by from https://www.flaticon.com/authors/pixel-perfect</string>
+    <string name="ic_map_desc">Icons made by from https://www.flaticon.com/authors/pixel-perfect</string>
     <string name="username">username</string>
     <string name="password">password</string>
     <string name="login">login</string>
@@ -24,6 +25,8 @@
     <string name="register">Register</string>
     <string name="reset">Reset</string>
     <string name="coming_soon">Coming Soon…</string>
+    <string name="review_count">Reviews: %1$d</string>
+    <string name="price">Price: %1$s</string>
 
     <string name="name_empty_msg">Name should not be empty</string>
     <string name="user_name_empty_msg">Username should not be empty</string>
@@ -40,5 +43,11 @@
     <string name="login_success">Login successful</string>
     <string name="search_hint">start typing restaurant name…</string>
     <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
     <string name="logging_out">Logging out</string>
+    <string name="More_detail_coming_soon">More Details coming soon!</string>
+    <string name="boulder">Boulder</string>
+    <string name="feature_coming_soon">Feature coming soon!</string>
+    <string name="prof_name">Name: %1$s</string>
+    <string name="prof_email">Email: %1$s</string>
 </resources>

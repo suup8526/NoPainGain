@@ -28,16 +28,40 @@ class SessionManager(context: Context) {
         get() = prefs[Constants.IS_LOGGED_IN] ?: false
 
     /**
-     * Used to save Bearer token in prefs
+     * Used to save user id in prefs
      */
-    fun setId(token: String) {
-        prefs[Constants.USER_ID] = token
+    fun setId(id: String) {
+        prefs[Constants.USER_ID] = id
     }
 
     /**
-     * @return Bearer token
+     * @return id user id
      */
     fun getId(): String? = prefs[Constants.USER_ID]
+
+    /**
+     * Used to save name in prefs
+     */
+    fun setName(name: String) {
+        prefs[Constants.USER_NAME] = name
+    }
+
+    /**
+     * @return name
+     */
+    fun getName(): String? = prefs[Constants.USER_NAME]
+
+    /**
+     * Used to save email in prefs
+     */
+    fun setEmail(email: String) {
+        prefs[Constants.USER_EMAIL] = email
+    }
+
+    /**
+     * @return email
+     */
+    fun getEmail(): String? = prefs[Constants.USER_EMAIL]
 
     /**
      * Used to clear prefs on logout

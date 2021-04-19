@@ -114,8 +114,9 @@ class RegistrationFragment : BaseFragment() {
                 context?.showAlertDialog(R.string.register_success)
                 findNavController().navigateUp()
             } else {
+                val msg = it.errorResponse?.message?: it.responseData?.message
                 context?.showAlertDialog(
-                    it.errorResponse?.message ?: getString(R.string.register_error_msg)
+                    msg ?: getString(R.string.register_error_msg)
                 )
             }
         })
