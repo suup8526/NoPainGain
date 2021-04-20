@@ -119,9 +119,10 @@ class GeneralTest {
         prefs[Constants.IS_LOGGED_IN] = false
         scenario = launch(AuthActivity::class.java)
         Thread.sleep(3000)
-        onView(withId(R.id.etUsername)).perform(replaceText("testUser"));
-        onView(withId(R.id.etPassword)).perform(replaceText("testPass"));
+        onView(withId(R.id.etUsername)).perform(replaceText("test"));
+        onView(withId(R.id.etPassword)).perform(replaceText("test"));
         onView(withId(R.id.btnLogin))?.perform(ViewActions.click())
+        Thread.sleep(3000)
         onView(withId(R.id.dashboardHostFragment))?.check(matches(isDisplayed()))
     }
 
