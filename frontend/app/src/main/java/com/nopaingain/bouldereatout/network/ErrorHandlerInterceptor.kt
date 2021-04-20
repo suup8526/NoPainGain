@@ -13,20 +13,20 @@ import java.net.SocketTimeoutException
 class ErrorHandlerInterceptor(application: Context) : Interceptor {
     var context: Context = application
 
-    override fun intercept(chain: Interceptor.Chain): Response? {
+    override fun intercept(chain: Interceptor.Chain): Response {
         if (!NetworkUtils.isNetworkAvailable(context)) {
             throw GenericNetworkException(context, ErrorCodes.NO_NETWORK)
         }
 
-        var response: Response? = null
+
+        var response = chain.proceed(chain.request())
 
         try {
-            response = chain.proceed(chain.request())
 
             if (response.isSuccessful) {
                 return response
             } else {
-                val jsonObject = JSONObject(response.body()?.string())
+                val jsonObject = JSONObject(response.body?.string())
                 throw GenericNetworkException(
                     context,
                     ErrorCodes.GENERIC_ERROR,

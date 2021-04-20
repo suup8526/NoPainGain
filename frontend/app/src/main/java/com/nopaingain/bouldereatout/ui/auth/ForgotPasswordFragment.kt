@@ -43,6 +43,10 @@ class ForgotPasswordFragment : BaseFragment() {
                 tilEmail.error = getString(R.string.email_empty_msg)
                 false
             }
+            tilEmail.editText?.text?.toString()?.isValidEmail() == false -> {
+                tilEmail.error = getString(R.string.email_invalid_msg)
+                false
+            }
             tilUsername.editText?.text?.toString()?.isEmpty() == true -> {
                 tilUsername.error = getString(R.string.user_name_empty_msg)
                 false

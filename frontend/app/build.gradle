@@ -87,6 +87,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
 
     implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
     //retrofit
     implementation 'com.squareup.okhttp3:logging-interceptor:3.14.2'
