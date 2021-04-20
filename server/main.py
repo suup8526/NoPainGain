@@ -1,27 +1,31 @@
-from sanic import Sanic, response
+from sanic import Sanic, response, Blueprint
 from sanic_auth import Auth, User
 from user_db import insert_user, select_user
-import os, ssl
+import os
 
 
 # user authentication
 app = Sanic("server")
+user_bp = Blueprint('user_bp')
 app.config.AUTH_LOGIN_ENDPOINT = 'login'
 auth = Auth(app)
 session = {}
 
 
-@app.middleware('request')
+@user_bp.middleware('request')
 async def add_session_to_request(request):
     # setup session
     request.ctx.session = session
 
-@app.route('/auth_test')
-@auth.login_required
+def handle_no_auth(request):
+    return response.json(dict(message='unauthorized'), status=401)
+
+@user_bp.route('/auth_test')
+@auth.login_required(handle_no_auth=handle_no_auth)
 async def auth_test(request):
     return response.json({'message':'You are secured!'})
 
-@app.route('/login', methods=['POST'])
+@user_bp.route('/login', methods=['POST'])
 async def login(request):
     #username = request.form.get('username')
     #password = request.form.get('password')
@@ -43,13 +47,13 @@ async def login(request):
     
     return response.json({'message':'Invalid username or password!'})
 
-@app.route('/logout')
+@user_bp.route('/logout')
 @auth.login_required
 async def logout(request):
     auth.logout_user(request)
-    return response.redirect('/login')
+    return response.json({'message':'You logged out!'})
 
-@app.route('/signup', methods=['POST'])
+@user_bp.route('/signup', methods=['POST'])
 async def signup(request):
     #username = request.form.get('username')
     #password = request.form.get('password')
@@ -69,7 +73,7 @@ async def signup(request):
     }
     return response.json(resp)
 
-@app.route('/reset', methods=['POST'])
+@user_bp.route('/reset', methods=['POST'])
 async def reset(request):
     #username = request.form.get('username')
     #password = request.form.get('password')
@@ -79,7 +83,7 @@ async def reset(request):
     id = update_password(username, password)
     return response.json({'message':'Password updated!'})
 
-@app.route('/update', methods=['POST'])
+@user_bp.route('/update', methods=['POST'])
 @auth.login_required
 async def update(request):
     #old_username = request.form.get('old_username')
@@ -95,6 +99,8 @@ async def update(request):
     print("Try to update user with: ", old_username, username, name, password, email)
     id = update_user(old_username, username, name, password, email)
     return response.json({'message':'User updated!'})
+
+app.blueprint(user_bp)
 
 if __name__ == "__main__":
     #context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
