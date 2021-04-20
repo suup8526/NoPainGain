@@ -6,7 +6,7 @@
 
 ## User Handling
 * 5 APIs provided
-* Currently uses POST form submit
+* Currently uses JSON POST data
 * _signup_: Register new user. Requires username, name, password, email (username and email should be unique. password should be hashed to 128 CHAR size)
 * _login_: Login with username and password. Requires username, password.
 * _logout_: Logout current user.
@@ -14,20 +14,24 @@
 * _reset_: Update user password only. Requires username, password (new password)
 * Every method which has @auth.login_required needs user login. ex) _logout, update_
 
+## Unit Test
+* Unit test is done by using a mock object and test doubles.
+* It tests valid/invalid login, valid/invalid authentication, valid/duplicated sign-up.
+
 ## Demo
 * Demo version is deployed on http://user-handling.herokuapp.com
 
 ```
 > curl http://user-handling.herokuapp.com/auth_test
-
-> curl -X POST -d "username=test2&name=John&password=test&email=test2@test" http://user-handling.herokuapp.com/signup
-{"ID":4}
-> curl -X POST -d "username=test&password=test" http://user-handling.herokuapp.com/login
-
+{"message":"unauthorized"}
+> curl -d "{\"username\":\"test\",\"name\":\"John\",\"password\":\"test\",\"email\":\"test@test\"}" http://user-handling.herokuapp.com/signup
+{"ID":1}
+> curl -d "{\"username\":\"test\",\"password\":\"test\"}" http://user-handling.herokuapp.com/login
+{"ID":1,"NAME":"John","EMAIL":"test@test"}
 > curl http://user-handling.herokuapp.com/auth_test
-You are secured!
+{"message":"You are secured!"}
 > curl http://user-handling.herokuapp.com/logout
-
+{"message":"You logged out!"}
 > curl http://user-handling.herokuapp.com/auth_test
-
+{"message":"unauthorized"}
 ```
