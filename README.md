@@ -13,15 +13,15 @@
 |User stories |[Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2491429)|
 |Production software |[Heroku](https://nopaingain.herokuapp.com)|
 |Android App(instead of Web app) |[Boulder EatOut](https://drive.google.com/file/d/1WVb3KztJAR4Vi8Uy8C3qa6DOFYeQJBo9/view?usp=sharing)|
-|All Test| [Tests](https://github.com/vash6618/NoPainGain/wiki/Tests)|
-|Data Storage|[PostgreSQL]()|
+|All Test(Unit test, Mock )| [Tests](https://github.com/vash6618/NoPainGain/wiki/Tests)|
+|Data Storage|[PostgreSQL](https://dashboard.heroku.com/apps/da-nopaingain-prod/resources)|
 |Data Collection|[Data Analysis](https://github.com/vash6618/NoPainGain/wiki/Data-Analysis)|
 |Data Analysis|[Data Analysis](https://github.com/vash6618/NoPainGain/wiki/Data-Analysis)|
-|REST APIs|[API End points]()|
-|Message Queue|[]()|
-|Continous Delivery|[]()|
-|Continous Integration|[]()|
-|Production Monitoring|[Firebase]()|
+|REST APIs|[API End points](https://github.com/vash6618/NoPainGain/wiki/REST-APIs)|
+|Message Queue|[RabitMQ](https://dashboard.heroku.com/apps/da-nopaingain-prod/resources)|
+|Continous Delivery|[Heroku + Github](https://dashboard.heroku.com/apps/da-nopaingain-staging/deploy/github)|
+|Continous Integration|[Github](https://github.com/vash6618/NoPainGain/actions/workflows/data_analyser_build.yml)|
+|Production Monitoring|[Firebase](https://github.com/vash6618/NoPainGain/wiki/Frontend-Analytic-tools)|
 |Final presentation |[PPT](https://docs.google.com/presentation/d/10w3d_bveAhIiEn4xbW_jZ0WOjSvpt6wjGQ6qfRh5-rk/edit?usp=sharing)|
 
 |Topic|Topic|Week #|
