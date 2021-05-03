@@ -7,7 +7,8 @@
 2. Heroku prototype frontend dashboard: https://dashboard.heroku.com/apps/nopaingain
 3. Heroku prototype server dashboard: https://dashboard.heroku.com/apps/prototype-server-backend
 
-|Website|URL|
+## Project
+|Topics|URL|
 |:---|:---:|
 |Overview |[Overview](https://github.com/vash6618/NoPainGain/wiki/Project-overview-and-goals)|
 |User stories |[Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2491429)|
@@ -17,12 +18,13 @@
 |Data Collection|[Data Collection Pipeline](https://dashboard.heroku.com/pipelines/cc2cd556-f0ba-46f5-a580-4f8bba11e04d) <br /> [Data Collection code]()|
 |Data Analysis|[Data Analysis Code](https://github.com/vash6618/NoPainGain/wiki/Data-Analysis) <br /> [Data Analysis report](https://github.com/vash6618/NoPainGain/wiki/Data-Analysis)|
 |REST APIs|[API End points](https://github.com/vash6618/NoPainGain/wiki/REST-APIs)|
-|Message Queue|[RabitMQ](https://dashboard.heroku.com/apps/da-nopaingain-prod/resources)|
+|Message Queue|[RabbitMQ](https://dashboard.heroku.com/apps/da-nopaingain-prod/resources)|
 |Continous Delivery|[Heroku + Github](https://dashboard.heroku.com/apps/da-nopaingain-staging/deploy/github)|
 |Continous Integration|[Github](https://github.com/vash6618/NoPainGain/actions/workflows/data_analyser_build.yml)|
 |Production Monitoring|[Firebase](https://github.com/vash6618/NoPainGain/wiki/Frontend-Analytic-tools)|
 |Final presentation |[PPT](https://docs.google.com/presentation/d/10w3d_bveAhIiEn4xbW_jZ0WOjSvpt6wjGQ6qfRh5-rk/edit?usp=sharing)|
 
+## Essays
 |Topic|Topic|Week #|
 |:---|:---|:---:|
 |Language|[Ruby: Overview](https://github.com/coloradocollective/5828_S21/wiki/Ruby:-Overview)|Week 11|
