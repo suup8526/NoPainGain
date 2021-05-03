@@ -14,8 +14,8 @@
 |Android App(instead of Web app) |[Boulder EatOut](https://drive.google.com/file/d/1WVb3KztJAR4Vi8Uy8C3qa6DOFYeQJBo9/view?usp=sharing)|
 |All Test(Unit test, Mock object and Acceptance test)| [Tests](https://github.com/vash6618/NoPainGain/wiki/Tests)|
 |Data Storage|[PostgreSQL](https://dashboard.heroku.com/apps/da-nopaingain-prod/resources)|
-|Data Collection|[Data Collection Pipeline](https://dashboard.heroku.com/pipelines/cc2cd556-f0ba-46f5-a580-4f8bba11e04d) [Data Collection code]()|
-|Data Analysis|[Data Analysis](https://github.com/vash6618/NoPainGain/wiki/Data-Analysis)|
+|Data Collection|[Data Collection Pipeline](https://dashboard.heroku.com/pipelines/cc2cd556-f0ba-46f5-a580-4f8bba11e04d) <br /> [Data Collection code]()|
+|Data Analysis|[Data Analysis Code](https://github.com/vash6618/NoPainGain/wiki/Data-Analysis) <br /> [Data Analysis report](https://github.com/vash6618/NoPainGain/wiki/Data-Analysis)|
 |REST APIs|[API End points](https://github.com/vash6618/NoPainGain/wiki/REST-APIs)|
 |Message Queue|[RabitMQ](https://dashboard.heroku.com/apps/da-nopaingain-prod/resources)|
 |Continous Delivery|[Heroku + Github](https://dashboard.heroku.com/apps/da-nopaingain-staging/deploy/github)|
