@@ -13,6 +13,7 @@
 |Overview |[Overview](https://github.com/vash6618/NoPainGain/wiki/Project-overview-and-goals)|
 |User stories |[Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2491429)|
 |Android App(instead of Web app) |[Boulder EatOut](https://drive.google.com/file/d/1WVb3KztJAR4Vi8Uy8C3qa6DOFYeQJBo9/view?usp=sharing)|
+|Backend Production Deployment|[Data Analyzer](https://dashboard.heroku.com/apps/da-nopaingain-prod) <br /> [Data Collection](https://dashboard.heroku.com/apps/dc-nopaingain-prod) <br /> [User Handling]()|
 |All Test(Unit test, Mock object and Acceptance test)| [Tests](https://github.com/vash6618/NoPainGain/wiki/Tests)|
 |Data Storage|[PostgreSQL](https://dashboard.heroku.com/apps/da-nopaingain-prod/resources)|
 |Data Collection|[Data Collection Pipeline](https://dashboard.heroku.com/pipelines/cc2cd556-f0ba-46f5-a580-4f8bba11e04d) <br /> [Data Collection Prod](https://dashboard.heroku.com/apps/dc-nopaingain-prod) <br /> [Data Collection code](https://github.com/vash6618/NoPainGain/tree/main/data_collection_layer)|
